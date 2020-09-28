@@ -1,4 +1,27 @@
-function setAlarm() {}
+function twoDigitsNumber (num) {
+  return ('0' + num).slice(-2);
+};
+
+function formatTimeInMinutes (time) {
+    const minutes =  twoDigitsNumber(Math.trunc(time / 60));
+    const seconds = twoDigitsNumber(time % 60);
+    return (minutes + ":" + seconds);
+}
+
+function setAlarm() {
+  let alarmSet = document.getElementById("alarmSet").value;
+  const timeRemaining = document.getElementById("timeRemaining");
+  const timerId = setInterval(() => {
+    if (alarmSet >= 0) 
+      timeRemaining.innerText = `Time Remaining: ${formatTimeInMinutes(alarmSet--)}`;
+    else {
+      playAlarm();
+      clearInterval(timerId);
+    }
+  }, 1000 );
+
+
+}
 
 // DO NOT EDIT BELOW HERE
 
